@@ -10,15 +10,15 @@ const COINGECKO_API_BASE_URL = 'https://api.coingecko.com/api/v3';
 
 app.prepare().then(() => {
     const server = express();
-    // server.use(cors());
     // Endpoint to fetch list of coins
-    server.get('/coins/markets', async (req, res) => {
+    server.get('/coins', async (req, res) => {
         try {
             const response = await axios.get(`${COINGECKO_API_BASE_URL}/coins/markets`, {
                 params: {
                     vs_currency: 'usd',
-                    per_page: 10, // Example: get 10 coins per request
-                    page: req.query.page || 1 // Pagination
+                    per_page: req.query.pageSize,
+                    page: req.query.page,
+                    price_change_percentage: '24h'
                 }
             });
             const coins = response.data.map(coin => ({
@@ -37,7 +37,7 @@ app.prepare().then(() => {
     });
 
     // Endpoint to fetch details of a specific coin
-    server.get('/coins/:id', async (req, res) => {
+    server.get('/coinDetails/:id', async (req, res) => {
         try {
             const response = await axios.get(`${COINGECKO_API_BASE_URL}/coins/${req.params.id}`, {
                 params: {
@@ -50,6 +50,7 @@ app.prepare().then(() => {
                 }
             });
             const coinDetails = {
+                id: 'PSOLAS',
                 name: response.data.name,
                 current_price: response.data.market_data.current_price.usd,
                 description: response.data.description.en,

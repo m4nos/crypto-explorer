@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import CoinTable from '../components/CoinTable';
-import AppHeader from '../components/AppHeader';
-import { useQueryCoins } from '../queries/coins.query';
+import CoinTable from '../../components/CoinTable';
+import { useQueryCoins } from '../../queries/coins.query';
+import AppHeader from '../../components/AppHeader';
 
 const CoinsOverviewPage = () => {
   const [pagination, setPagination] = useState({

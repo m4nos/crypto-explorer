@@ -1,46 +1,29 @@
+'use client';
+import React from 'react';
+import { useQueryCoinDetails } from '../../../queries/coins.query';
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+const CoinDetailsPage = ({ params }) => {
+    const {
+        data: coinDetails,
+        isFetching,
+        isError,
+        error,
+    } = useQueryCoinDetails(params.coinId);
 
-const CoinDetails = ({ params }) => {
-  const { coinId } = params
-  const [coinDetails, setCoinDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+    if (isFetching) return <div>Loading...</div>;
+    if (isError) return <div>Error: {error}</div>;
 
-  useEffect(() => {
-    const fetchCoinDetails = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/coins/${coinId}`
-        );
-        setCoinDetails(response.data);
-        setLoading(false);
-      } catch (error) {
-        setError('Error fetching data');
-        setLoading(false);
-      }
-    };
-    if (coinId) {
-      fetchCoinDetails();
-    }
-  }, [coinId]);
+    console.log(coinDetails);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  console.log(coinDetails);
-
-  return (
-    <div>
-      <h1>{coinDetails.name}</h1>
-      <div>Current Price: ${coinDetails.current_price}</div>
-      <div>Description: {coinDetails.description}</div>
-      <div>Price Change (24h): {coinDetails.price_change_percentage_24h}%</div>
-      {/* Add more details as needed */}
-    </div>
-  );
+    return (
+        <div>
+            <h1>TEST</h1>
+            {/* <div>Current Price: ${coinDetails.current_price}</div>
+            <div>Description: {coinDetails.description}</div>
+            <div>Price Change (24h): {coinDetails.price_change_percentage_24h}%</div> */}
+            {/* Add more details as needed */}
+        </div>
+    );
 };
 
-export default CoinDetails;
+export default CoinDetailsPage;
