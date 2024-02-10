@@ -2,6 +2,45 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { DataGrid } from '@mui/x-data-grid';
+import styled from 'styled-components';
+
+const StyledDataGrid = styled(DataGrid)`
+  background-color: wheat;
+`
+
+const columns = [
+  {
+    field: 'name',
+    headerName: 'Name',
+    sortable: false,
+  },
+  {
+    field: 'symbol',
+    headerName: 'Symbol',
+    sortable: false,
+  },
+  {
+    field: 'current_price',
+    headerName: 'Price',
+    sortable: false,
+
+  },
+  {
+    field: 'high_24h',
+    headerName: 'highest 24h',
+  },
+  {
+    field: 'low_24',
+    headerName: 'lowest 24h',
+  },
+  {
+    field: 'price_change_percentage_24h',
+    headerName: 'change percentage',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: true,
+  },
+];
 
 const Home = () => {
   const [coins, setCoins] = useState([]);
@@ -29,20 +68,17 @@ const Home = () => {
   return (
     <div>
       <h1>List of Coins</h1>
-      <ul>
-        {coins.map(coin => (
-          <li key={coin.symbol} >
-            <Link href={`/coins/${coin.id}`}>
-              <div>Name: {coin.name}</div>
-              <div>Symbol: {coin.symbol}</div>
-              <div>Current Price: ${coin.current_price}</div>
-              <div>Highest Price (24h): ${coin.high_24h}</div>
-              <div>Lowest Price (24h): ${coin.low_24h}</div>
-              <div>Price Change (24h): {coin.price_change_percentage_24h}%</div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <StyledDataGrid
+        rows={coins}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]} />
     </div>
   );
 };
