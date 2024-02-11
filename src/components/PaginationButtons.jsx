@@ -17,8 +17,17 @@ import styled from 'styled-components';
 const StyledSelect = styled(Select)`
   min-width: 5rem;
   outline: none;
-  .Mui-focused + .MuiOutlinedInput-notchedOutline {
-    border: none;
+  color: white;
+
+  .MuiSelect-select {
+    padding-left: 1.5rem;
+  }
+  .MuiSvgIcon-root {
+    color: white;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    border-width: 1px !important;
   }
 `;
 
@@ -38,27 +47,35 @@ const PaginationButtons = ({ pagination, setPagination }) => {
   };
 
   const handlePageSize = (event) => {
-    console.log(event);
     setPagination((prevPagination) => ({
       ...prevPagination,
-      pageSize: Number(event.target.innerText),
+      pageSize: Number(event.target.value),
     }));
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '1rem',
+        paddingBottom: '2rem',
+      }}
+    >
       <IconButton
         onClick={handlePrevPage}
         disabled={pagination.page === 1}
         style={{ padding: '1rem' }}
       >
-        <NavigateBeforeIcon />
+        <NavigateBeforeIcon sx={{ color: 'white' }} />
       </IconButton>
       <IconButton onClick={handleNextPage} style={{ padding: '1rem' }}>
-        <NavigateNextIcon />
+        <NavigateNextIcon sx={{ color: 'white' }} />
       </IconButton>
       <FormControl>
-        <InputLabel id="PageSize">Page size</InputLabel>
+        <InputLabel id="PageSize" style={{ color: 'white' }}>
+          Page size
+        </InputLabel>
         <StyledSelect
           value={pagination.pageSize}
           onChange={handlePageSize}
