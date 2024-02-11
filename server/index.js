@@ -13,6 +13,7 @@ app.prepare().then(() => {
     // Endpoint to fetch list of coins
     server.get('/coins', async (req, res) => {
         try {
+            console.log(req.query)
             const response = await axios.get(`${COINGECKO_API_BASE_URL}/coins/markets`, {
                 params: {
                     vs_currency: 'usd',
@@ -50,7 +51,6 @@ app.prepare().then(() => {
                 }
             });
             const coinDetails = {
-                id: 'PSOLAS',
                 name: response.data.name,
                 current_price: response.data.market_data.current_price.usd,
                 description: response.data.description.en,

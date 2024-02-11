@@ -27,42 +27,39 @@ const StyledTableRow = styled(TableRow)`
   }
 `;
 
-const CoinTable = ({ coins }) => {
-  console.log(coins);
-  return (
-    <StyledTableContainer component={Paper}>
-      <Table aria-label="coins table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Symbol</StyledTableCell>
-            <StyledTableCell>Current Price</StyledTableCell>
-            <StyledTableCell>1h</StyledTableCell>
-            <StyledTableCell>24h high</StyledTableCell>
-            <StyledTableCell>24h low</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {coins.map((coin) => (
-            <StyledTableRow
-              component={Link}
-              href={`/coins/${coin.id}`}
-              key={coin.id}
-            >
-              <StyledTableCell>{coin.name}</StyledTableCell>
-              <StyledTableCell>{coin.symbol}</StyledTableCell>
-              <StyledTableCell>{coin.current_price}</StyledTableCell>
-              <StyledTableCell>{coin.high_24h}</StyledTableCell>
-              <StyledTableCell>{coin.low_24h}</StyledTableCell>
-              <StyledTableCell>
-                {coin.price_change_percentage_24h}
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </StyledTableContainer>
-  );
-};
+const CoinTable = ({ coins }) => (
+  <StyledTableContainer component={Paper}>
+    <Table aria-label="coins table">
+      <TableHead>
+        <TableRow>
+          <StyledTableCell>Name</StyledTableCell>
+          <StyledTableCell>Symbol</StyledTableCell>
+          <StyledTableCell>Current Price</StyledTableCell>
+          <StyledTableCell>1h</StyledTableCell>
+          <StyledTableCell>24h high</StyledTableCell>
+          <StyledTableCell>24h low</StyledTableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {coins.map((coin) => (
+          <StyledTableRow
+            component={Link}
+            href={`/coins/${coin.id}`}
+            key={coin.id}
+          >
+            <StyledTableCell>{coin.name}</StyledTableCell>
+            <StyledTableCell>{coin.symbol}</StyledTableCell>
+            <StyledTableCell>{coin.current_price}</StyledTableCell>
+            <StyledTableCell>{coin.high_24h}</StyledTableCell>
+            <StyledTableCell>{coin.low_24h}</StyledTableCell>
+            <StyledTableCell>
+              {coin.price_change_percentage_24h}
+            </StyledTableCell>
+          </StyledTableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </StyledTableContainer>
+);
 
 export default CoinTable;

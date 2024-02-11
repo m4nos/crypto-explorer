@@ -12,7 +12,7 @@ const CoinsOverviewPage = () => {
   const { data: coins, isFetching, isError, error } = useQueryCoins(pagination);
 
   if (isFetching) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error}</div>;
+  if (isError) return <div>Error:</div>;
   return (
     <>
       <AppHeader />

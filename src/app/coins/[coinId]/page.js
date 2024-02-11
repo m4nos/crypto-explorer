@@ -11,9 +11,7 @@ const CoinDetailsPage = ({ params }) => {
     } = useQueryCoinDetails(params.coinId);
 
     if (isFetching) return <div>Loading...</div>;
-    if (isError) return <div>Error: {error}</div>;
-
-    console.log(coinDetails);
+    if (isError) return <div>Error</div>;
 
     return (
         <div>
