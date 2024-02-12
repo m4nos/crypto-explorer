@@ -13,7 +13,6 @@ app.prepare().then(() => {
     // Endpoint to fetch list of coins
     server.get('/coins', async (req, res) => {
         try {
-            console.log(req.query)
             const response = await axios.get(`${COINGECKO_API_BASE_URL}/coins/markets`, {
                 params: {
                     vs_currency: 'usd',
@@ -61,8 +60,8 @@ app.prepare().then(() => {
                 price_change_percentage_60d: response.data.market_data.price_change_percentage_60d,
                 price_change_percentage_200d: response.data.market_data.price_change_percentage_200d,
                 price_change_percentage_1y: response.data.market_data.price_change_percentage_1y,
-                high_24h: response.data.market_data.high_24h,
-                low_24h: response.data.market_data.low_24h
+                high_24h: response.data.market_data.high_24h.usd,
+                low_24h: response.data.market_data.low_24h.usd
             };
             res.json(coinDetails);
         } catch (error) {

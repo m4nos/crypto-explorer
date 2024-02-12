@@ -1,8 +1,7 @@
-import { Inter } from "next/font/google";
 import TanstackProvider from "../providers/TanstackProvider";
-import './styles/globals.css'
+import AppHeader from "../components/AppHeader";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Crypto Explorer",
@@ -12,11 +11,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body >
+      <body style={{ backgroundColor: '#d5d5d5' }}>
         <TanstackProvider>
+          <CssBaseline />
+
+          <AppHeader />
           {children}
         </TanstackProvider>
       </body>
-    </html>
+    </html >
   );
 }

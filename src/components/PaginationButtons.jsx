@@ -8,6 +8,7 @@ import {
   MenuItem,
   Select,
   Stack,
+  Tooltip,
 } from '@mui/material';
 import React from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -16,17 +17,12 @@ import styled from 'styled-components';
 
 const StyledSelect = styled(Select)`
   min-width: 5rem;
-  outline: none;
-  color: white;
 
   .MuiSelect-select {
     padding-left: 1.5rem;
   }
-  .MuiSvgIcon-root {
-    color: white;
-  }
+
   .MuiOutlinedInput-notchedOutline {
-    border-color: rgba(255, 255, 255, 0.5) !important;
     border-width: 1px !important;
   }
 `;
@@ -46,12 +42,11 @@ const PaginationButtons = ({ pagination, setPagination }) => {
     }));
   };
 
-  const handlePageSize = (event) => {
-    setPagination((prevPagination) => ({
-      ...prevPagination,
+  const handlePageSize = (event) =>
+    setPagination({
+      page: 1,
       pageSize: Number(event.target.value),
-    }));
-  };
+    });
 
   return (
     <Box
@@ -62,20 +57,24 @@ const PaginationButtons = ({ pagination, setPagination }) => {
         paddingBottom: '2rem',
       }}
     >
-      <IconButton
-        onClick={handlePrevPage}
-        disabled={pagination.page === 1}
-        style={{ padding: '1rem' }}
-      >
-        <NavigateBeforeIcon sx={{ color: 'white' }} />
-      </IconButton>
-      <IconButton onClick={handleNextPage} style={{ padding: '1rem' }}>
-        <NavigateNextIcon sx={{ color: 'white' }} />
-      </IconButton>
+      <Tooltip title="Previous page">
+        <span>
+          <IconButton
+            onClick={handlePrevPage}
+            disabled={pagination.page === 1}
+            style={{ padding: '1rem' }}
+          >
+            <NavigateBeforeIcon />
+          </IconButton>
+        </span>
+      </Tooltip>
+      <Tooltip title="Next page">
+        <IconButton onClick={handleNextPage} style={{ padding: '1rem' }}>
+          <NavigateNextIcon />
+        </IconButton>
+      </Tooltip>
       <FormControl>
-        <InputLabel id="PageSize" style={{ color: 'white' }}>
-          Page size
-        </InputLabel>
+        <InputLabel id="PageSize">Page size</InputLabel>
         <StyledSelect
           value={pagination.pageSize}
           onChange={handlePageSize}
