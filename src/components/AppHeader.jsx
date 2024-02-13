@@ -10,7 +10,7 @@ const AppHeader = () => {
         fontSize: '5rem',
         textAlign: 'center',
         fontFamily: 'system-ui',
-        fontWeight: 800,
+        fontWeight: 800
       }}
     >
       <Link

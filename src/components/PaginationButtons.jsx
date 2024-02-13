@@ -8,7 +8,7 @@ import {
   MenuItem,
   Select,
   Stack,
-  Tooltip,
+  Tooltip
 } from '@mui/material';
 import React from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -31,21 +31,21 @@ const PaginationButtons = ({ pagination, setPagination }) => {
   const handlePrevPage = () => {
     setPagination((prevPagination) => ({
       ...prevPagination,
-      page: Math.max(prevPagination.page - 1, 1),
+      page: Math.max(prevPagination.page - 1, 1)
     }));
   };
 
   const handleNextPage = () => {
     setPagination((prevPagination) => ({
       ...prevPagination,
-      page: prevPagination.page + 1,
+      page: prevPagination.page + 1
     }));
   };
 
   const handlePageSize = (event) =>
     setPagination({
       page: 1,
-      pageSize: Number(event.target.value),
+      pageSize: Number(event.target.value)
     });
 
   return (
@@ -54,7 +54,7 @@ const PaginationButtons = ({ pagination, setPagination }) => {
         display: 'flex',
         justifyContent: 'center',
         gap: '1rem',
-        paddingBottom: '2rem',
+        paddingBottom: '2rem'
       }}
     >
       <Tooltip title="Previous page">

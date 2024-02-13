@@ -7,7 +7,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
+  TableRow
 } from '@mui/material';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -45,7 +45,7 @@ export const StyledTableRow = styled(TableRow)`
 
 const initialPagination = {
   pageSize: 10,
-  page: 1,
+  page: 1
 };
 
 const breakpoint = 1200;

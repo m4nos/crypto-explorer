@@ -1,11 +1,10 @@
-import TanstackProvider from "../providers/TanstackProvider";
-import AppHeader from "../components/AppHeader";
-import { CssBaseline, GlobalStyles } from "@mui/material";
-
+import TanstackProvider from '../providers/TanstackProvider';
+import AppHeader from '../components/AppHeader';
+import { CssBaseline, GlobalStyles } from '@mui/material';
 
 export const metadata = {
-  title: "Crypto Explorer",
-  description: "Portal to all cryptocurrencies"
+  title: 'Crypto Explorer',
+  description: 'Portal to all cryptocurrencies'
 };
 
 export default function RootLayout({ children }) {
@@ -19,6 +18,6 @@ export default function RootLayout({ children }) {
           {children}
         </TanstackProvider>
       </body>
-    </html >
+    </html>
   );
 }

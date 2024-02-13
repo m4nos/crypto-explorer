@@ -1,7 +1,7 @@
 module.exports = {
-    resolve: {
-        alias: {
-            '@mui/styled-engine': '@mui/styled-engine-sc'
-        },
-    },
-}
+  resolve: {
+    alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc'
+    }
+  }
+};
