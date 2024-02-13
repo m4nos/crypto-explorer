@@ -31,7 +31,9 @@ const CoinDetailsPage = ({ params }) => {
             <Typography style={{ margin: '0 5rem', fontSize: '5rem', fontWeight: '800' }}>
                 {coinDetails.name}
             </Typography>
-            <Paper elevation={3} style={{ margin: '0 5rem', padding: '2rem', backgroundColor: '#ececec' }}>{coinDetails.description}</Paper>
+            <Paper elevation={3} style={{ margin: '0 5rem', padding: '2rem', backgroundColor: '#ececec' }}>
+                <div dangerouslySetInnerHTML={{ __html: coinDetails.description }} />
+            </Paper>
             <StyledBox display='flex'>
                 <List>
                     <ListItem>
